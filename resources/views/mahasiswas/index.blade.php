@@ -37,7 +37,7 @@
  <th>No_Handphone</th>
  <th>Email</th>
  <th>Tanggal Lahir</th>
- <th width="280px">Action</th>
+ <th width="310px">Action</th>
  </tr>
  @foreach ($mahasiswas as $Mahasiswa)
  <tr>
@@ -49,17 +49,21 @@
  <td>{{ $Mahasiswa->No_Handphone }}</td>
  <td>{{ $Mahasiswa->Email }}</td>
  <td>{{ $Mahasiswa->TanggalLahir }}</td>
- <td>
- <form action="{{ route('mahasiswas.destroy',$Mahasiswa->Nim) }}" method="POST">
+<td>
+ <form action="{{ route('mahasiswas.destroy',$Mahasiswa->Nim) }}" method="POST" >
  
  <a class="btn btn-info" href="{{ route('mahasiswas.show',$Mahasiswa->Nim) }}">Show</a>
  <a class="btn btn-primary" href="{{ route('mahasiswas.edit',$Mahasiswa->Nim) }}">Edit</a>
+ <a class="btn btn-warning" href="/mahasiswas/nilai/{{ $Mahasiswa->Nim }}">Nilai </a>
  @csrf
  @method('DELETE')
  <button type="submit" class="btn btn-danger">Delete</button>
  </form>
  </td>
  </tr>
+ <div>
+    {!! $mahasiswas->withQueryString()->links('pagination::bootstrap-5')!!}
+ </div>
  @endforeach
  </table>
 
